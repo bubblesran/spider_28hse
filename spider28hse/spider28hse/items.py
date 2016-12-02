@@ -11,7 +11,7 @@ import scrapy
 class Spider28HseItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-	ID=scrapy.Field()
+	id=scrapy.Field()
 	Status=scrapy.Field()
 	Price=scrapy.Field()
 	Floor=scrapy.Field()

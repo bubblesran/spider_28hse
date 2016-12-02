@@ -14,17 +14,22 @@ class DuplicatesPipeline(object):
 		self.ids_seen = set()
 
 	def process_item(self, item, housespider):
-		if item['ID'] in self.ids_seen:
+		if item['id'] in self.ids_seen:
 			raise DropItem("Duplicate item found: %s" % item)
 		else:
-			self.ids_seen.add(item['ID'])
+			self.ids_seen.add(item['id'])
 			return item
 
 class ExportcsvPipline(object):
-	def __init__(self):
-		self.csvwriter = csv.writer(open('items.csv','w'))
+	def spider_opened(self, housespider):
+		self.file=open('items.csv','w')
+		self.exporter = CsvItemExporter(self.file)
+		self.exporter.start_exporting()
+	
+	def spider_closed(self, housespider):
+		self.exporter.finish_exporting()
+		self.file.close()
 		
 	def process_item(self, item, housespider):
-		row=item['ID']
-		self.csvwriter.writerow(row)
+		self.exporter.export_item(item)
 		return item
