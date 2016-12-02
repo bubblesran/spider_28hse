@@ -21,4 +21,3 @@ class Spider28HseItem(scrapy.Item):
 	Date=scrapy.Field()
 	Rooms=scrapy.Field()
 	Describe=scrapy.Field()
-    pass
