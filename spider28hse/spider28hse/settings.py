@@ -65,7 +65,7 @@ DOWNLOAD_DELAY = 2
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-	'spider28hse.pipelines.DuplicatesPipeline': 300,
+#	'spider28hse.pipelines.DuplicatesPipeline': 300,
 	'spider28hse.pipelines.ExportcsvPipline': 800
 	}
 
