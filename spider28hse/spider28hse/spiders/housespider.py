@@ -20,10 +20,17 @@ class housespider(CrawlSpider):
 		
 		table = response.xpath("//*[@id='bA']/div[2]/div[2]/ul/li[1]/div/div[2]/table")
 		
-		web_names=['Property ID','Status','Price','Floor','Gross area(sq feet)','Net floor area(sq feet)','Property age(year)','Address','Expire date','Room']
-		item_keys=['propertyid', 'Status','Price', 'Floor' ,'GrossArea', 'NetArea', 'Age', 'Address', 'Date', 'Room']
+		web_names = ['Property ID','Status','Price','Floor','Gross area(sq feet)','Net floor area(sq feet)','Property age(year)','Address','Expire date','Room']
+		item_keys = ['propertyid', 'Status','Price', 'Floor' ,'GrossArea', 'NetArea', 'Age', 'Address', 'Date', 'Room']
 		for name,key in zip(web_names, item_keys):
 			if table.xpath(".//tr[th/text()='%s']/td" % name):
-				item[key]=table.xpath(".//tr[th/text()='%s']/td" % name).extract()
+				if table.xpath(".//tr[th/text()='%s']/td/text()" % name).extract():
+					temp_item = table.xpath(".//tr[th/text()='%s']/td/text()" % name).extract()[0]
+					temp_item = temp_item.replace(u'\xa0',u' ')
+					item[key] = temp_item.replace(u'\u200e',u'')
+				else:
+					temp_item = table.xpath(".//tr[th/text()='%s']/td/div[1]/text()" % name).extract()[0]
+					temp_item = temp_item.replace(u'\xa0',u' ')
+					item[key] = temp_item.replace(u'\u200e',u'')
 		
 		return item

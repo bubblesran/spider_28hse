@@ -8,6 +8,8 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
+import sys
+import io
 
 BOT_NAME = 'spider28hse'
 
@@ -65,9 +67,12 @@ DOWNLOAD_DELAY = 2
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-#	'spider28hse.pipelines.DuplicatesPipeline': 300,
+	'spider28hse.pipelines.DuplicatesPipeline': 300,
 	'spider28hse.pipelines.ExportcsvPipline': 800
 	}
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8')
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
