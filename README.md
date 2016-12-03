@@ -1,3 +1,2 @@
 # spider_28hse
-可以成功爬取网站数据。
-下一步需要修正保存数据的问题。
+A scrapy crawler for 28hse.com.
