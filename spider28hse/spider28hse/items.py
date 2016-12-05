@@ -10,8 +10,8 @@ from scrapy.item import Item
 
 
 class Spider28HseItem(Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
+	# define the fields for your item here like:
+	# name = scrapy.Field()
 	propertyid=scrapy.Field()
 	Status=scrapy.Field()
 	Price=scrapy.Field()
