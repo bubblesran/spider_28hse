@@ -15,7 +15,6 @@ class Spider28HseItem(Item):
 	propertyid=scrapy.Field()
 	Status=scrapy.Field()
 	Price=scrapy.Field()
-	Block=scrapy.Field()
 	Floor=scrapy.Field()
 	GrossArea=scrapy.Field()
 	NetArea=scrapy.Field()
